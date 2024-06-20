@@ -11,6 +11,19 @@ Offline, Open-Source RAG
 
 Ingest files for retrieval augmented generation (RAG) with open-source Large Language Models (LLMs), all without 3rd parties or sensitive data leaving your network.
 
+You have to have Ollama Server running :)
+
+curl -fsSL https://ollama.com/install.sh | sh
+
+
+Install steps (try with WSL Ubuntu 22.04):
+
+1. git clone https://github.com/HyperUpscale/local-rag-ollama-github-url.git
+2. sudo apt update && sudo apt install python3-pip python3.10-venv -y
+3. cd local-rag-ollama-github-url && source bin/activate
+4. pip install -r requirements.txt
+5. streamlit run main.py
+
 Features:
 
 - Offline Embeddings & LLMs Support (No OpenAI!)

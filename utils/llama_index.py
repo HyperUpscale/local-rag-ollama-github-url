@@ -95,13 +95,6 @@ def load_documents(data_dir: str):
     except Exception as err:
         logs.log.error(f"Error creating data index: {err}")
         raise Exception(f"Error creating data index: {err}")
-    finally:
-        for file in os.scandir(data_dir):
-            if file.is_file() and not file.name.startswith(
-                ".gitkeep"
-            ):  # TODO: Confirm syntax here
-                os.remove(file.path)
-        logs.log.info(f"Document loading complete; removing local file(s)")
 
 
 ###################################

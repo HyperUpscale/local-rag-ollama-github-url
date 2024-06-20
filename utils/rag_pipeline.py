@@ -34,7 +34,7 @@ def rag_pipeline(uploaded_files: list = None):
     Side Effects:
         - Creates a service context using the provided Ollama model and embedding file.
         - Loads documents from the current working directory or the provided list of files.
-        - Removes the loaded documents and any temporary files created during processing.
+        - Does not remove the loaded documents and any temporary files created during processing until the Streamlit app is restarted.
     """
     error = None
 
@@ -139,20 +139,5 @@ def rag_pipeline(uploaded_files: list = None):
         error = err
         st.exception(error)
         st.stop()
-
-    #####################
-    # Remove data files #
-    #####################
-
-    if len(st.session_state["file_list"]) > 0:
-        try:
-            save_dir = os.getcwd() + "/data"
-            shutil.rmtree(save_dir)
-            st.caption("✔️ Removed Temp Files")
-        except Exception as err:
-            logs.log.warning(
-                f"Unable to delete data files, you may want to clean-up manually: {str(err)}"
-            )
-            pass
 
     return error  # If no errors occurred, None is returned
